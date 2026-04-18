@@ -1,7 +1,7 @@
 # Selling Albums - ASP.NET Core MVC & Web API Study
 
 ## Project Purpose
-This project was developed as a hands-on introduction to **ASP.NET Core MVC** and as a way to deepen my knowledge of **Web APIs**. The main goal is to build a functional web application for selling music albums, focusing on modern development practices.
+This project was developed as a hands-on introduction to **ASP.NET Core MVC**, **Entity Framework** and **SQL Server** and as a way to deepen my knowledge of **Web APIs**. The main goal is to build a functional web application for selling music albums, focusing on modern development practices.
 
 ## Course Context
 The project is being built during the course **"ASP .NET Core MVC - Criando um Site do Zero (NET 6)"** taught by **Jose Carlos Macoratti**. 
