@@ -1,27 +1,23 @@
-var builder = WebApplication.CreateBuilder(args);
+namespace SellingAlbums;
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    // Entry point of the application
+    // It sets up and starts the ASP.NET Core application
+    public static void Main(string[] args)
+    {
+        // Returns an object that implements the IHostBuilder interface
+        CreateHostBuilder(args)
+           .Build()
+           .Run();
+    }
+
+    // Configures a host for the ASP.NET Core application using the default settings
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        // Static Class Host is used to create an IHostBuilder instance
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
