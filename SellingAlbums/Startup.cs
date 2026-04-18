@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SellingAlbums.Context;
 
 namespace SellingAlbums;
 public class Startup
@@ -14,7 +15,12 @@ public class Startup
     // It configures the services of the application.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        // Registers the AppDbContext as a service setting SQL Server as the database provider
+        // and using the connection string defined in appsettings.json
+        // Lifetime Scoped: For each request there will be a new service instance created for AppDbContext
+        // and the instance can be injected into the controllers that need it.
+        services.AddDbContext<AppDbContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         services.AddControllersWithViews();
     }
 
