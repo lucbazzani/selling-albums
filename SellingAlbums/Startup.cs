@@ -1,4 +1,6 @@
-﻿namespace SellingAlbums;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SellingAlbums;
 public class Startup
 {
     public Startup(IConfiguration configuration)
@@ -12,6 +14,7 @@ public class Startup
     // It configures the services of the application.
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         services.AddControllersWithViews();
     }
 
