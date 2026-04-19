@@ -1,1 +1,12 @@
-﻿<partial name="_Carousel"/>
+﻿@model HomeViewModel
+
+<partial name="_Carousel"/>
+
+<h2>Favourite Albums</h2>
+
+<div class="row">
+    @foreach (var album in Model.FavouriteAlbums)
+    {
+        <partial name="_AlbumsSummary" for="@album"/>
+    }
+</div>
