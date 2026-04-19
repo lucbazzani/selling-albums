@@ -1,0 +1,9 @@
+﻿@model ShoppingCartViewModel
+
+@if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
+{
+    <a asp-controller="ShoppingCart" asp-action="Index">
+        <span><img src="~/images/cart.ico"/></span>
+        <span style="color:white">@Model.ShoppingCart.ShoppingCartItems.Count</span>
+    </a>
+}
