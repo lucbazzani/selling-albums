@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SellingAlbums.Models;
 using SellingAlbums.Repositories.Interfaces;
 using SellingAlbums.ViewModels;
 
@@ -13,11 +14,30 @@ namespace SellingAlbums.Controllers
             _albumRepository = albumRepository;
         }
 
-        public IActionResult List()
+        public IActionResult List(string genre)
         {
-            var albumsListViewModel = new AlbumListViewModel();
-            albumsListViewModel.Albums = _albumRepository.Albums;
-            albumsListViewModel.GenreName = "All";
+            IEnumerable<Album> albums;
+            string currentGenre = string.Empty;
+
+            if (string.IsNullOrEmpty(genre))
+            {
+                albums = _albumRepository.Albums.OrderBy(a => a.Title);
+                currentGenre = "All";
+            }
+            else
+            {
+                albums = _albumRepository.Albums
+                            .Where(a => a.Genre.Name
+                            .Equals(genre, StringComparison.OrdinalIgnoreCase))
+                            .OrderBy(a => a.Title);
+            }
+            currentGenre = genre;
+
+            var albumsListViewModel = new AlbumListViewModel
+            {
+                Albums = albums,
+                GenreName = currentGenre
+            };
 
             return View(albumsListViewModel);
         }
