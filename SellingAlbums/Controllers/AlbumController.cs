@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SellingAlbums.Repositories.Interfaces;
+using SellingAlbums.ViewModels;
 
 namespace SellingAlbums.Controllers
 {
@@ -14,10 +15,11 @@ namespace SellingAlbums.Controllers
 
         public IActionResult List()
         {
-            ViewBag.Title = "Albums";
+            var albumsListViewModel = new AlbumListViewModel();
+            albumsListViewModel.Albums = _albumRepository.Albums;
+            albumsListViewModel.GenreName = "All";
 
-            var albums = _albumRepository.Albums;  
-            return View(albums);
+            return View(albumsListViewModel);
         }
     }
 }

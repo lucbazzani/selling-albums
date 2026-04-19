@@ -1,14 +1,14 @@
-﻿<!-- model indicates that the view is strongly typed to the specified type, in this case Album -->
-@model IEnumerable<SellingAlbums.Models.Album>
+﻿<!-- model indicates that the view is strongly typed to the specified type, in this case AlbumListViewModel -->
+@model AlbumListViewModel
 <div>
-    <h2>@ViewBag.Title</h2>
+    <h2>@Model.GenreName Albums</h2>
 </div>
 
 <div class="container">
     <div class="row">
 
         <!-- Model is a type specified (Album) variable -->
-        @foreach (var album in Model)
+        @foreach (var album in Model.Albums)
         {
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <p><img src="@album.CoverUrl" class="w-75 img-fluid"/></p>
