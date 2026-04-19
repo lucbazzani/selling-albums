@@ -14,7 +14,9 @@ namespace SellingAlbums.Controllers
 
         public IActionResult List()
         {
-            var albums = _albumRepository.Albums;
+            ViewBag.Title = "Albums";
+
+            var albums = _albumRepository.Albums;  
             return View(albums);
         }
     }
