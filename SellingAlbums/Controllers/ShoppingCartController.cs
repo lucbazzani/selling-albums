@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SellingAlbums.Models;
 using SellingAlbums.Repositories.Interfaces;
+using SellingAlbums.ViewModels;
 
 namespace SellingAlbums.Controllers
 {
@@ -17,7 +18,36 @@ namespace SellingAlbums.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var items = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
+
+            var shoppingCartVM = new ShoppingCartViewModel
+            {
+                ShoppingCart = _shoppingCart,
+                CartTotal = _shoppingCart.GetShoppingCartTotal()
+            };
+
+            return View(shoppingCartVM);
+        }
+        
+        public RedirectToActionResult AddItemToShoppingCart(int albumId)
+        {
+            var selectedAlbum = _albumRepository.Albums.FirstOrDefault(a => a.AlbumId == albumId);
+            if (selectedAlbum != null)
+            {
+                _shoppingCart.AddToCart(selectedAlbum);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult RemoveItemFromShoppingCart(int albumId)
+        {
+            var selectedAlbum = _albumRepository.Albums.FirstOrDefault(a => a.AlbumId == albumId);
+            if (selectedAlbum != null)
+            {
+                _shoppingCart.RemoveFromCart(selectedAlbum);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
