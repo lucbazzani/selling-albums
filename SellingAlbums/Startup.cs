@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SellingAlbums.Context;
+using SellingAlbums.Repositories;
+using SellingAlbums.Repositories.Interfaces;
 
 namespace SellingAlbums;
 public class Startup
@@ -21,6 +23,11 @@ public class Startup
         // and the instance can be injected into the controllers that need it.
         services.AddDbContext<AppDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<IAlbumRepository, AlbumRepository>();
+        services.AddTransient<IArtistRepository, ArtistRepository>();
+        services.AddTransient<IGenreRepository, GenreRepository>();
+
         services.AddControllersWithViews();
     }
 

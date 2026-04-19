@@ -1,0 +1,15 @@
+﻿<!-- model indicates that the view is strongly typed to the specified type, in this case Album -->
+@model IEnumerable<SellingAlbums.Models.Album>
+<div>
+    <h2>Albums</h2>
+</div>
+
+<!-- Model is a type specified (Album) variable -->
+@foreach (var album in Model)
+{
+    <div>
+        <h4>@album.Title</h4>
+        <p><img src="@album.CoverUrl" class="w-75"/></p>
+        <h3>@album.Price.ToString("c")</h3>
+    </div>
+}
