@@ -12,7 +12,7 @@ using SellingAlbums.Context;
 namespace SellingAlbums.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260419134410_ShoppingCartItem")]
+    [Migration("20260419142732_ShoppingCartItem")]
     partial class ShoppingCartItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,8 +122,9 @@ namespace SellingAlbums.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
+                    b.Property<string>("ShoppingCartId")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("ShoppingCartItemId");
 

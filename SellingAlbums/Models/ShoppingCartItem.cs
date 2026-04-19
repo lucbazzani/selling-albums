@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SellingAlbums.Models
 {
@@ -11,6 +12,7 @@ namespace SellingAlbums.Models
 
         public int Quantity { get; set; }
 
-        public int ShoppingCartId { get; set; }
+        [MaxLength(200)]
+        public string ShoppingCartId { get; set; }
     }
 }

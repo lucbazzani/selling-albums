@@ -16,7 +16,7 @@ namespace SellingAlbums.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AlbumId = table.Column<int>(type: "int", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    ShoppingCartId = table.Column<int>(type: "int", nullable: false)
+                    ShoppingCartId = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {

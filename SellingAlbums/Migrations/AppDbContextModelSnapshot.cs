@@ -120,8 +120,9 @@ namespace SellingAlbums.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
+                    b.Property<string>("ShoppingCartId")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("ShoppingCartItemId");
 
