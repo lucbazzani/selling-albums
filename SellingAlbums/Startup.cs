@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SellingAlbums.Context;
+using SellingAlbums.Models;
 using SellingAlbums.Repositories;
 using SellingAlbums.Repositories.Interfaces;
 
@@ -28,6 +29,7 @@ public class Startup
         services.AddTransient<IArtistRepository, ArtistRepository>();
         services.AddTransient<IGenreRepository, GenreRepository>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(sc => ShoppingCart.GetCart(sc));
 
         services.AddControllersWithViews();
 
