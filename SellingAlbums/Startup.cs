@@ -61,6 +61,13 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
+
+            endpoints.MapControllerRoute(
+                name: "albumFilter",
+                pattern: "Album/{action}/{genre?}",
+                defaults: new { Controller = "Album", action = "List" }
+                );
+
             // Definition of the default mapping used by ASP.NET application
             endpoints.MapControllerRoute(
                 name: "default",
